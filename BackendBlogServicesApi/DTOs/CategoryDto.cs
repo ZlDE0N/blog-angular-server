@@ -7,7 +7,6 @@ namespace BackendBlogServicesApi.DTOs
         public string Name { get; set; }
         public string Description { get; set; }
         public string Tag { get; set; }
-        public string Code { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime ? UpdatedAt { get; set; }
         public bool Estado { get; set; }

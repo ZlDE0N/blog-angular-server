@@ -13,7 +13,7 @@ namespace BackendBlogServicesApi.Data
         public DbSet<Categories> Categories { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<EntriesBlog> EntriesBlog { get; set; }
-        public DbSet<EntriesBlogCategory> EntriesBlogCategories { get; set; }
+        public DbSet<EntriesBlogCategory> EntriesBlogCategory { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -51,10 +51,6 @@ namespace BackendBlogServicesApi.Data
                 .HasIndex(e => e.Title)
                 .IsUnique();
 
-            modelBuilder.Entity<EntriesBlog>()
-                .HasIndex(e => e.Code)
-                .IsUnique();
-
             // Configuración de la entidad Categories
             modelBuilder.Entity<Categories>()
                 .Property(c => c.CreatedAt)
@@ -72,9 +68,6 @@ namespace BackendBlogServicesApi.Data
                 .HasIndex(c => c.Name)
                 .IsUnique();
 
-            modelBuilder.Entity<Categories>()
-                .HasIndex(c => c.Code)
-                .IsUnique();
 
             // Configuración de la entidad EntriesBlogCategories (relación entre EntriesBlog y Categories)
             modelBuilder.Entity<EntriesBlogCategory>()

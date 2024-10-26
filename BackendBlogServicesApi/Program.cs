@@ -18,6 +18,16 @@ builder.Services.AddDbContext<AppDbContext>(opciones => opciones.UseSqlServer(bu
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<CategoryService>();
 
+// Registrar el repositorio y el servicio
+builder.Services.AddScoped<IEntriesBlogRepository, EntriesBlogRepository>();
+builder.Services.AddScoped<EntriesBlogService>();
+
+// Registrar el repositorio y el servicio
+builder.Services.AddScoped<IEntriesBlogCategoryRepository, EntriesBlogCategoryRepository>();
+builder.Services.AddScoped<EntriesBlogCategoryService>();
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

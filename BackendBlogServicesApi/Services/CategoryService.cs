@@ -26,7 +26,6 @@ namespace BackendBlogServicesApi.Services
                 Name = category.Name,
                 Description = category.Description,
                 Tag = category.Tag,
-                Code = category.Code,
                 CreatedAt = category.CreatedAt,
                 UpdatedAt = category.UpdatedAt,
                 Estado = category.Estado
@@ -53,7 +52,6 @@ namespace BackendBlogServicesApi.Services
                     Name = category.Name,
                     Description = category.Description,
                     Tag = category.Tag,
-                    Code = category.Code,
                     CreatedAt = category.CreatedAt,
                     UpdatedAt = category.UpdatedAt,
                     Estado = category.Estado
@@ -65,12 +63,6 @@ namespace BackendBlogServicesApi.Services
 
         public async Task<Result<bool>> AddAsync(CategoryDto categoryDto)
         {
-            // Validación para campos únicos
-            var existingCodeCategory = await _categoryRepository.ExistsByCodeAsync(categoryDto.Code);
-            if (existingCodeCategory)
-            {
-                return Result<bool>.Failure(false, $"El código '{categoryDto.Code}' ya existe.");
-            }
             var existingNameCategory = await _categoryRepository.ExistsByNameAsync(categoryDto.Name);
             if (existingNameCategory)
             {
@@ -82,7 +74,6 @@ namespace BackendBlogServicesApi.Services
                 Name = categoryDto.Name,
                 Description = categoryDto.Description,
                 Tag = categoryDto.Tag,
-                Code = categoryDto.Code,
                 CreatedAt = categoryDto.CreatedAt,
                 UpdatedAt = categoryDto.UpdatedAt,
                 Estado = categoryDto.Estado
@@ -107,21 +98,11 @@ namespace BackendBlogServicesApi.Services
 
         public async Task<Result<bool>> UpdateAsync(int id, CategoryDto categoryDto)
         {
-            // Obtener la categoría existente
+
             var existingCategory = await _categoryRepository.GetByIdAsync(id);
             if (existingCategory == null)
             {
                 return Result<bool>.Failure(false, "Categoría no encontrada.");
-            }
-
-            // Validación para campos únicos solo si han cambiado
-            if (existingCategory.Code != categoryDto.Code)
-            {
-                var existingCodeCategory = await _categoryRepository.ExistsByCodeAsync(categoryDto.Code);
-                if (existingCodeCategory)
-                {
-                    return Result<bool>.Failure(false, $"El código '{categoryDto.Code}' ya existe, está ocupado por otra categoría.");
-                }
             }
 
             if (existingCategory.Name != categoryDto.Name)
@@ -133,11 +114,9 @@ namespace BackendBlogServicesApi.Services
                 }
             }
 
-            // Actualizar los valores de la categoría
             existingCategory.Name = categoryDto.Name;
             existingCategory.Description = categoryDto.Description;
             existingCategory.Tag = categoryDto.Tag;
-            existingCategory.Code = categoryDto.Code;
             existingCategory.UpdatedAt = DateTime.UtcNow;
             existingCategory.Estado = categoryDto.Estado;
 

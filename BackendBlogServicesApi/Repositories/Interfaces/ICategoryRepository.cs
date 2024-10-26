@@ -13,6 +13,5 @@ namespace BackendBlogServicesApi.Repositories.Interfaces
         Task UpdateAsync(Categories category);
         Task DeleteAsync(int id);
         Task<bool> ExistsByNameAsync(string name, int? excludeId = null);
-        Task<bool> ExistsByCodeAsync(string code, int? excludeId = null);
     }
 }

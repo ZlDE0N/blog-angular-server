@@ -56,11 +56,5 @@ namespace BackendBlogServicesApi.Repositories
             return await _context.Categories
                 .AnyAsync(c => c.Name == name && (!excludeId.HasValue || c.Id != excludeId.Value));
         }
-
-        public async Task<bool> ExistsByCodeAsync(string code, int? excludeId = null)
-        {
-            return await _context.Categories
-                .AnyAsync(c => c.Code == code && (!excludeId.HasValue || c.Id != excludeId.Value));
-        }
     }
 }

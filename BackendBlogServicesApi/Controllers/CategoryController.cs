@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 namespace BackendBlogServicesApi.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/category")]
     public class CategoryController : ControllerBase
     {
         private readonly CategoryService _categoryService;
+        private readonly ILogger<CategoryController> _logger;
 
-        public CategoryController(CategoryService categoryService)
+        public CategoryController(CategoryService categoryService, ILogger<CategoryController> logger)
         {
             _categoryService = categoryService;
+            _logger = logger;
         }
 
         [HttpGet("{id}")]
@@ -28,7 +30,7 @@ namespace BackendBlogServicesApi.Controllers
                     return NotFound(result.Error);
                 }
 
-                return Ok(result.Value);
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -42,7 +44,7 @@ namespace BackendBlogServicesApi.Controllers
             try
             {
                 var result = await _categoryService.GetAllAsync();
-                return Ok(result.Value);
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -80,7 +82,7 @@ namespace BackendBlogServicesApi.Controllers
                     return BadRequest(result.Error);
                 }
 
-                return Ok(result.Value);
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -99,7 +101,7 @@ namespace BackendBlogServicesApi.Controllers
                     return NotFound(result.Error);
                 }
 
-                return NoContent();
+                return Ok(result);
             }
             catch (Exception ex)
             {

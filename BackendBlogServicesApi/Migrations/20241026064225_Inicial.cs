@@ -20,7 +20,6 @@ namespace BackendBlogServicesApi.Migrations
                     Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Tag = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Code = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Estado = table.Column<bool>(type: "bit", nullable: false, defaultValue: true)
@@ -29,12 +28,6 @@ namespace BackendBlogServicesApi.Migrations
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Categories_Code",
-                table: "Categories",
-                column: "Code",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Categories_Name",
