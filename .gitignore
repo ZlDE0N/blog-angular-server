@@ -1,0 +1,59 @@
+# Ignorar los archivos de compilación y los de configuración de usuario
+bin/
+obj/
+out/
+*.user
+*.userosscache
+*.sln.docstates
+
+# Ignorar archivos de publicación y temporales
+*.swp
+*.log
+*.lock
+*.tmp
+*.temp
+*.DS_Store
+*.directory
+
+# Ignorar archivos de configuración y carpetas generadas por Visual Studio
+.vscode/
+.vs/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sln.*
+*.sln.ide.*
+*.sln.nd.*
+
+# Ignorar archivos de configuración de Mac
+*.DS_Store
+*.AppleDouble
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Ignorar archivos de configuración de Rider
+.idea/
+*.sln.iml
+.idea/modules.xml
+.idea/.idea/workspace.xml
+
+# Ignorar archivos de configuración de VS Code
+.vscode/settings.json
+
+# Ignorar configuraciones de depuración y base de datos local
+.env
+appsettings.Development.json
+appsettings.Local.json
+
+# Ignorar certificados de desarrollo y archivos de claves
+*.pfx
+*.p12
+*.key
+
+# Ignorar dependencias de usuario y configuraciones personales de IDE
+.DS_Store
+node_modules/
