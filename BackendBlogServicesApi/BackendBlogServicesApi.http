@@ -4,3 +4,6 @@ GET {{BackendBlogServicesApi_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+POST {{BackendBlogServicesApi_HostAddress}}/api/category/
+Accept: application/json
+

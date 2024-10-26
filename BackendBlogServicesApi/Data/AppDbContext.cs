@@ -69,7 +69,7 @@ namespace BackendBlogServicesApi.Data
                 .HasDefaultValue(true);
 
             modelBuilder.Entity<Categories>()
-                .HasIndex(c => c.Nombre)
+                .HasIndex(c => c.Name)
                 .IsUnique();
 
             modelBuilder.Entity<Categories>()
