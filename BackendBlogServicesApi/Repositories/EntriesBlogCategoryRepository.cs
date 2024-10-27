@@ -1,4 +1,5 @@
-﻿using BackendBlogServicesApi.DTOs;
+﻿using BackendBlogServicesApi.Data;
+using BackendBlogServicesApi.DTOs;
 using BackendBlogServicesApi.Entity;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,9 +7,9 @@ namespace BackendBlogServicesApi.Repositories
 {
     public class EntriesBlogCategoryRepository : IEntriesBlogCategoryRepository
     {
-        private readonly DbContext _context;
+        private readonly AppDbContext _context;
 
-        public EntriesBlogCategoryRepository(DbContext context)
+        public EntriesBlogCategoryRepository(AppDbContext context)
         {
             _context = context;
         }
