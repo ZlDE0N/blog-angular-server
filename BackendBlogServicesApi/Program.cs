@@ -6,10 +6,21 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
+builder.WebHost.UseUrls("https://localhost:5001", "https://localhost:5002");
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy => policy.WithOrigins("http://localhost:4200")  
+                        .AllowAnyHeader()                      
+                        .AllowAnyMethod()                      
+                        .AllowCredentials()                    
+                        .WithExposedHeaders("Custom-Header")   
+                        .SetPreflightMaxAge(TimeSpan.FromMinutes(10))
+    );
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(opciones => opciones.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -26,8 +37,6 @@ builder.Services.AddScoped<EntriesBlogService>();
 builder.Services.AddScoped<IEntriesBlogCategoryRepository, EntriesBlogCategoryRepository>();
 builder.Services.AddScoped<EntriesBlogCategoryService>();
 
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -42,5 +51,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors("AllowFrontend");
 
 app.Run();

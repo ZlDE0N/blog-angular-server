@@ -20,6 +20,7 @@ namespace BackendBlogServicesApi.Repositories
                 .Include(e => e.Category)
                 .Include(e => e.EntriesBlog)
                 .FirstOrDefaultAsync(e => e.Id == id);
+
         }
 
         public async Task<IEnumerable<EntriesBlogCategory>> GetAllAsync()
